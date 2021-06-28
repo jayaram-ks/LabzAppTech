@@ -514,7 +514,7 @@
                             />
 
                         <Button
-                            android:id="@+id/btn_todo"
+                            android:id="@+id/btn_update_path"
                             android:backgroundTint="@color/green"
                             android:layout_width="0dp"
                             android:layout_height="45dp"
@@ -522,7 +522,7 @@
                             android:layout_weight="1"
                             android:textAllCaps="false"
                             android:textSize="13sp"
-                            android:text="ToDo"
+                            android:text="Update Path"
                             android:letterSpacing=".01"/>
                     </LinearLayout>
                 </LinearLayout>

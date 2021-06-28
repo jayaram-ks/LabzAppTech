@@ -12,6 +12,7 @@ const val BOOKING_DETAILS = "bookingdetails"
 const val CHANGE_BOOK_STS = "changebookingstatus"
 const val CHANGE_PRINTGIVEN_STS = "changepaperbillstatus"
 const val TEST_REPORT_UPLOAD = "uploadreport"
+const val BOOKING_DETAILS_FOR_PATH = "bookingdetforpath"
 
 
 

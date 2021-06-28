@@ -92,4 +92,13 @@ interface ApiService {
         @Part prescrImage : MultipartBody.Part,
     ):Call<UploadReportResponse>
 
+    @GET(BOOKING_DETAILS_FOR_PATH)
+    fun bookDetailsForPath(
+        @Header("Authorization") authtoken: String?,
+        @Query("api_token") apitoken: String?,
+        @Query("booking_id") bookid: String?,
+    ):Call<BookingDetailsforPathResp>
+
+
+
 }

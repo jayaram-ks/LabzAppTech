@@ -31,6 +31,8 @@ import com.labzapp.technician.model.UploadReportResponse
 import com.labzapp.technician.services.network.ApiService
 import com.labzapp.technician.services.network.ServiceBuilder
 import com.labzapp.technician.storage.SharedPrefManager
+import com.labzapp.technician.ui.labs.BookingPath
+import com.labzapp.technician.ui.labs.LabDetailsFragment
 import com.labzapp.technician.utils.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -242,8 +244,19 @@ class BookingDetailsFragment : Fragment() {
                 addCategory(Intent.CATEGORY_OPENABLE)
                 flags = flags or Intent.FLAG_GRANT_READ_URI_PERMISSION
             }
-
             resultLauncher.launch(intent)
+        }
+
+        binding.btnUpdatePath.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("param1", param1)
+            val transaction = parentFragmentManager.beginTransaction()
+            val openfragmt = BookingPath()
+            openfragmt.arguments = bundle
+            transaction.replace(R.id.activity_main_content_id, openfragmt)
+            transaction.addToBackStack(null)
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            transaction.commit()
         }
 
     }

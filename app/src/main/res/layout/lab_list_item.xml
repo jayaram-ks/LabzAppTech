@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    app:cardCornerRadius="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:strokeColor="@color/green_border"
+    app:strokeWidth="1dp"
+    app:cardBackgroundColor="@color/white"
+    android:layout_marginVertical="4dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@color/green"
+        android:paddingVertical="4dp"
+        android:paddingHorizontal="10dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:id="@+id/lab_title"
+        android:shadowColor = "@color/txtShadow"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="6dp" >
+
+        <ImageView
+            android:id="@+id/lab_logo"
+            android:layout_width="70dp"
+            android:layout_height="70dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingHorizontal="6dp"
+            >
+
+            <TextView
+                android:id="@+id/lab_details"
+                android:gravity="top"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:fontFamily="@font/lato_bold"
+                android:maxLines="2"
+                android:letterSpacing=".01"
+                android:layout_weight="2"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/pin_code"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:maxLines="2"
+                android:letterSpacing=".01"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/lab_district"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:maxLines="2"
+                android:letterSpacing=".01"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@color/green"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="10dp"
+            android:textSize="13sp"
+            android:id="@+id/lab_footer"
+            android:shadowColor = "@color/txtShadow"
+            android:shadowDx = "1"
+            android:shadowDy = "1"
+            android:shadowRadius = "2"
+            />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

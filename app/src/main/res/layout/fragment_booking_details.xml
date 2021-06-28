@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transp_black"
+    android:orientation="vertical"
+    android:paddingTop="5dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="15dp"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="4dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="6dp"
+                    android:orientation="vertical">
+
+                    <TextView android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:text="Patient Details"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+                    <TextView android:layout_width="match_parent"
+                        android:id="@+id/pat_name"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+                    <TextView android:layout_width="match_parent"
+                        android:id="@+id/pat_age_gender"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+
+                    <TextView android:layout_width="match_parent"
+                        android:id="@+id/pat_address"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+                    <TextView android:layout_width="match_parent"
+                        android:id="@+id/pat_phone"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+                    <TextView android:layout_width="match_parent"
+                        android:id="@+id/pat_pincode_district"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="4dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="6dp"
+                    android:orientation="vertical">
+
+
+                    <TextView android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:text="Booking Details"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+                    <TextView android:layout_width="match_parent"
+                        android:id="@+id/booking_date"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+                    <TextView android:layout_width="match_parent"
+                        android:id="@+id/book_id"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+                    <TextView android:layout_width="match_parent"
+                        android:id="@+id/sample_coll_date"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+                    <TextView android:layout_width="match_parent"
+                        android:id="@+id/book_status"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+                    <TextView android:layout_width="match_parent"
+                        android:id="@+id/print_needed"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+                    <TextView android:layout_width="match_parent"
+                        android:id="@+id/print_given"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/report_file"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="13sp" />
+                    <TextView
+                        android:paddingVertical="3dp"
+                        android:id="@+id/view_report_file"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:text="View Uploaded Report"
+                        android:textStyle="bold"
+                        android:textColor="@color/success_green"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="4dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="6dp"
+                    android:orientation="vertical">
+                    <TextView android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:text="Lab Details"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+
+                    <TextView android:layout_width="match_parent"
+                        android:id="@+id/lab_name"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+                    <TextView android:layout_width="match_parent"
+                        android:id="@+id/lab_address"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+                    <TextView android:layout_width="match_parent"
+                        android:id="@+id/lab_pin_district"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="4dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:paddingVertical="5dp"
+
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:text="Tests Details"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:id="@+id/test_list_view"
+                        android:layout_height="match_parent"
+                        />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="4dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:paddingVertical="6dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:text="Charges Details"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+
+                    <LinearLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView android:layout_width="0dp"
+                            android:layout_weight="2"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:text="Tests total"
+                            android:textColor="@color/dark_grey"
+                            android:paddingHorizontal="10dp"
+                            android:paddingBottom="2dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/test_total"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:paddingHorizontal="10dp"
+                            android:paddingBottom="2dp"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView android:layout_width="0dp"
+                            android:layout_weight="2"
+                            android:text="Service charges"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:textColor="@color/dark_grey"
+                            android:paddingHorizontal="10dp"
+                            android:paddingBottom="2dp"
+                            />
+
+
+                        <TextView android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:id="@+id/service_charges"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:textColor="@color/dark_grey"
+                            android:paddingHorizontal="10dp"
+                            />
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/orange"
+                        android:layout_marginVertical="2dp"
+                        />
+                    <LinearLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView android:layout_width="0dp"
+                            android:layout_weight="2"
+                            android:text="Grand Total"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:textColor="@color/dark_grey"
+                            android:paddingHorizontal="10dp"
+
+                            />
+
+
+                        <TextView android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:id="@+id/grand_total"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/dark_grey"
+                            android:paddingHorizontal="10dp"
+
+                            />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="4dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:paddingVertical="6dp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:text="Update Booking related Status"
+                        android:paddingBottom="2dp"
+                        />
+
+                    <LinearLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                       >
+                        <Button
+                            android:id="@+id/btn_decline_book"
+                            android:backgroundTint="@color/fail_red"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="45dp"
+                            android:layout_marginEnd="3dp"
+                            android:textSize="13sp"
+                            android:textAllCaps="false"
+                            android:text="Decline Booking"
+                            android:letterSpacing=".01"
+                            />
+
+                        <Button
+                            android:id="@+id/btn_sample_coll"
+                            android:backgroundTint="@color/dark_grey"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_marginStart="3dp"
+                            android:layout_weight="1"
+                            android:textAllCaps="false"
+                            android:textSize="13sp"
+                            android:text="Sample Collected"
+                            android:letterSpacing=".01"/>
+
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_print_givn"
+                            android:backgroundTint="@color/success_green"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_marginEnd="3dp"
+                            android:layout_weight="1"
+                            android:textAllCaps="false"
+                            android:textSize="13sp"
+                            android:text="Print Given"
+                            android:letterSpacing=".01"/>
+
+                        <Button
+                            android:id="@+id/btn_book_complt"
+                            android:backgroundTint="@color/success_green"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="45dp"
+                            android:layout_marginStart="3dp"
+                            android:textSize="13sp"
+                            android:textAllCaps="false"
+                            android:text="Completed Booking"
+                            android:letterSpacing=".01"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <Button
+                            android:id="@+id/btn_print_notg"
+                            android:backgroundTint="@color/red"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="45dp"
+                            android:layout_marginEnd="3dp"
+                            android:textSize="13sp"
+                            android:textAllCaps="false"
+                            android:text="Print Not given"
+                            android:letterSpacing=".01"
+                            />
+
+                        <Button
+                            android:id="@+id/btn_sample_notc"
+                            android:backgroundTint="@color/green"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_marginStart="3dp"
+                            android:layout_weight="1"
+                            android:textAllCaps="false"
+                            android:textSize="13sp"
+                            android:text="Sample Not Collected"
+                            android:letterSpacing=".01"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <Button
+                            android:id="@+id/btn_upload_report"
+                            android:backgroundTint="@color/green"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="45dp"
+                            android:layout_marginEnd="3dp"
+                            android:textSize="13sp"
+                            android:textAllCaps="false"
+                            android:text="Upload PDF report"
+                            android:letterSpacing=".01"
+                            />
+
+                        <Button
+                            android:id="@+id/btn_todo"
+                            android:backgroundTint="@color/green"
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_marginStart="3dp"
+                            android:layout_weight="1"
+                            android:textAllCaps="false"
+                            android:textSize="13sp"
+                            android:text="ToDo"
+                            android:letterSpacing=".01"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

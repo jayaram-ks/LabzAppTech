@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.labzapp.technician.activities.MainActivity
 import com.labzapp.technician.activities.MainViewModel
 import com.labzapp.technician.adapters.MyBookAdapter
 import com.labzapp.technician.databinding.BookingsFragmentBinding
@@ -38,6 +39,11 @@ class BookingsFragment : Fragment() {
 
         sharedViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
+        sharedViewModel.pagetitle.observe(viewLifecycleOwner,{
+            (activity as MainActivity?)?.setActionBarTitle(it.toString())
+        })
+
+
         sharedViewModel.bookingsresp.observe(viewLifecycleOwner, {
 
             if(it.code == 200) {
@@ -59,6 +65,15 @@ class BookingsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+
+
+
+    companion object {
+
+        const val TAG = "BookingsFragment"
+
     }
 
 

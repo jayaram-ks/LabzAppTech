@@ -1,17 +1,13 @@
 package com.labzapp.technician.ui.profile
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.labzapp.technician.R
-import com.labzapp.technician.adapters.LabsAdapter
-import com.labzapp.technician.databinding.LabsFragmentBinding
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.labzapp.technician.activities.MainActivity
 import com.labzapp.technician.databinding.ProfileFragmentBinding
-import com.labzapp.technician.ui.labs.LabsViewModel
 
 class ProfileFragment : Fragment() {
 
@@ -23,6 +19,12 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: ProfileViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity as MainActivity?)?.setActionBarTitle("My Profile")
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +47,6 @@ class ProfileFragment : Fragment() {
             binding.userAddress.text = it.technician_address
             binding.userDistrict.text = it.district_name
         })
-
 
     }
 

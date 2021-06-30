@@ -69,6 +69,7 @@ class BookingDetailsFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
+        (activity as MainActivity?)?.setActionBarTitle("Booking Details")
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -25,10 +24,8 @@ import com.labzapp.technician.listeners.RecyclerTouchListener
 import com.labzapp.technician.model.NavigationItemModel
 import com.labzapp.technician.storage.SharedPrefManager
 import com.labzapp.technician.ui.bookings.BookingsFragment
-import com.labzapp.technician.ui.labs.LabDetailsFragment
 import com.labzapp.technician.ui.labs.LabsFragment
 import com.labzapp.technician.ui.profile.ProfileFragment
-import com.labzapp.technician.utils.toastz
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -142,10 +139,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun setActionBarTitle(title: String?) {
+        supportActionBar!!.title = title
+    }
+
+
+
     private fun setCurrentFragment(fragmentnew: Fragment, addtoBackStck:Boolean, ptitle:String, param1:String, param2:String){
-        supportActionBar!!.title = ptitle
-        if(param1 != "") {
+
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            val count: Int = supportFragmentManager.backStackEntryCount
+            for (i in 0 until count) {
+                supportFragmentManager.popBackStack()
+            }
+        }
+
+        if(param1 != "") {  //IF bookings
             sharedViewModel.getBookings(param1,param2)
+            sharedViewModel.setTitl(ptitle)
         }
         actparam1 = param1
         actparam2 = param2
@@ -154,6 +165,7 @@ class MainActivity : AppCompatActivity() {
         if(addtoBackStck) {
             transnew.addToBackStack(null)
         }
+
         transnew.replace(R.id.activity_main_content_id,fragmentnew)
         transnew.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
         transnew.commit()
@@ -172,7 +184,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             // Checking for fragment count on back stack
             if (supportFragmentManager.backStackEntryCount > 0) {
-                actparam1?.let { actparam2?.let { it1 -> sharedViewModel.getBookings(it, it1) } }
+                //actparam1?.let { actparam2?.let { it1 -> sharedViewModel.getBookings(it, it1) } }
                 // Go to the previous fragment
                 supportFragmentManager.popBackStack()
 
@@ -194,7 +206,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        actparam1?.let { actparam2?.let { it1 -> sharedViewModel.getBookings(it, it1) } }
+        if( actparam1 != "") {
+            actparam1?.let { actparam2?.let { it1 -> sharedViewModel.getBookings(it, it1) } }
+        }
     }
 
     override fun onStart() {

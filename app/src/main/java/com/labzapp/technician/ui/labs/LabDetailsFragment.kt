@@ -30,6 +30,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.labzapp.technician.R
+import com.labzapp.technician.activities.MainActivity
 import com.labzapp.technician.databinding.FragmentLabDetailsBinding
 import com.labzapp.technician.utils.maps.PermissionUtils
 import com.labzapp.technician.utils.toastz
@@ -70,6 +71,7 @@ class LabDetailsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        (activity as MainActivity?)?.setActionBarTitle("Lab Details")
         lastKnownLocation?.latitude  = DEF_LOCATION.latitude
         lastKnownLocation?.longitude = DEF_LOCATION.longitude
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())

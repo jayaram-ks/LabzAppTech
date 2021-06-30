@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.labzapp.technician.R
+import com.labzapp.technician.activities.MainActivity
 import com.labzapp.technician.adapters.LabsAdapter
 import com.labzapp.technician.databinding.LabsFragmentBinding
 import com.labzapp.technician.model.Bookings
@@ -29,6 +30,11 @@ class LabsFragment : Fragment() {
 
     private lateinit var labsadapter: LabsAdapter
     private lateinit var viewModel: LabsViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity as MainActivity?)?.setActionBarTitle("Labs Allocated")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

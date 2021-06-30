@@ -1,11 +1,15 @@
 package com.labzapp.technician.utils
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
+import com.labzapp.technician.activities.MainActivity
 
 fun toastz(cnxt: Context, messg: String)
 {
@@ -26,6 +30,8 @@ fun snackzcolor(cnxtv: View, messg: String,idz:Int,colorstring:String,sduration:
     Snackbar.make(cnxtv,messg,Snackbar.LENGTH_LONG).setTextColor(Color.WHITE).
     setAnchorView(idz).setBackgroundTint(Color.parseColor(colorstring)).setDuration(sduration).show()
 }
+
+
 
 
 

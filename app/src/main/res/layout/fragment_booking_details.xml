@@ -135,6 +135,14 @@
                         android:paddingBottom="2dp"
                         />
                     <TextView android:layout_width="match_parent"
+                        android:id="@+id/office_alloc_date"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/dark_grey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        />
+                    <TextView android:layout_width="match_parent"
                         android:id="@+id/book_status"
                         android:layout_height="wrap_content"
                         android:textSize="13sp"
@@ -161,6 +169,14 @@
 
                     <TextView
                         android:id="@+id/report_file"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="2dp"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="13sp" />
+                    <TextView
+                        android:id="@+id/distance_travel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingHorizontal="10dp"
@@ -406,15 +422,13 @@
 
                     <LinearLayout android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                        >
                         <Button
                             android:id="@+id/btn_decline_book"
                             android:backgroundTint="@color/fail_red"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:layout_marginEnd="3dp"
                             android:textSize="13sp"
                             android:textAllCaps="false"
                             android:text="Decline Booking"
@@ -424,46 +438,39 @@
                         <Button
                             android:id="@+id/btn_sample_coll"
                             android:backgroundTint="@color/dark_grey"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:layout_marginStart="3dp"
-                            android:layout_weight="1"
                             android:textAllCaps="false"
                             android:textSize="13sp"
-                            android:text="Sample Collected"
+                            android:text="Sample Collection Update"
                             android:letterSpacing=".01"/>
 
-                    </LinearLayout>
-                    <LinearLayout android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/btn_print_givn"
-                            android:backgroundTint="@color/success_green"
-                            android:layout_width="0dp"
-                            android:layout_height="45dp"
-                            android:layout_marginEnd="3dp"
-                            android:layout_weight="1"
-                            android:textAllCaps="false"
-                            android:textSize="13sp"
-                            android:text="Print Given"
-                            android:letterSpacing=".01"/>
 
                         <Button
                             android:id="@+id/btn_book_complt"
                             android:backgroundTint="@color/success_green"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:layout_marginStart="3dp"
                             android:textSize="13sp"
                             android:textAllCaps="false"
                             android:text="Completed Booking"
                             android:letterSpacing=".01"
                             />
 
+                        <Button
+                            android:id="@+id/btn_upload_report"
+                            android:backgroundTint="@color/green"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginEnd="3dp"
+                            android:textSize="13sp"
+                            android:textAllCaps="false"
+                            android:text="Upload PDF report"
+                            android:letterSpacing=".01"
+                            />
+
                     </LinearLayout>
+
 
                     <LinearLayout android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -483,48 +490,22 @@
                             />
 
                         <Button
-                            android:id="@+id/btn_sample_notc"
-                            android:backgroundTint="@color/green"
+                            android:id="@+id/btn_print_givn"
+                            android:backgroundTint="@color/success_green"
                             android:layout_width="0dp"
                             android:layout_height="45dp"
                             android:layout_marginStart="3dp"
                             android:layout_weight="1"
                             android:textAllCaps="false"
                             android:textSize="13sp"
-                            android:text="Sample Not Collected"
+                            android:text="Print Given"
                             android:letterSpacing=".01"/>
+
+
 
                     </LinearLayout>
 
-                    <LinearLayout android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-                        <Button
-                            android:id="@+id/btn_upload_report"
-                            android:backgroundTint="@color/green"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="45dp"
-                            android:layout_marginEnd="3dp"
-                            android:textSize="13sp"
-                            android:textAllCaps="false"
-                            android:text="Upload PDF report"
-                            android:letterSpacing=".01"
-                            />
 
-                        <Button
-                            android:id="@+id/btn_update_path"
-                            android:backgroundTint="@color/green"
-                            android:layout_width="0dp"
-                            android:layout_height="45dp"
-                            android:layout_marginStart="3dp"
-                            android:layout_weight="1"
-                            android:textAllCaps="false"
-                            android:textSize="13sp"
-                            android:text="Update Path"
-                            android:letterSpacing=".01"/>
-                    </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

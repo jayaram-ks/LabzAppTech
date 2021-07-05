@@ -72,6 +72,7 @@ interface ApiService {
         @Field("api_token") apitoken: String?,
         @Field("booking_id") bookid: String?,
         @Field("booking_status_flag") booksts: String?,
+        @Field("distance_traveld") distnce: String?,
     ):Call<BookStsUpdateResp>
 
     @FormUrlEncoded

@@ -3,15 +3,10 @@ package com.labzapp.technician.ui.bookings
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.os.StrictMode
-import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,8 +26,6 @@ import com.labzapp.technician.model.UploadReportResponse
 import com.labzapp.technician.services.network.ApiService
 import com.labzapp.technician.services.network.ServiceBuilder
 import com.labzapp.technician.storage.SharedPrefManager
-import com.labzapp.technician.ui.labs.BookingPath
-import com.labzapp.technician.ui.labs.LabDetailsFragment
 import com.labzapp.technician.utils.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -102,8 +95,21 @@ class BookingDetailsFragment : Fragment() {
                     if(it.pref_date != null) {
                         val datp = LocalDate.parse(it.pref_date, datFormat)
                         val prefdate = datp.dayOfMonth.toString() + " " + datp.month.toString() + " " + datp.year.toString()
-                        binding.sampleCollDate.text = "Sample Collection Date : $prefdate"
+                        binding.sampleCollDate.text = "Customer Preferred Date : $prefdate"
                     }
+                    else{
+                        binding.sampleCollDate.text = "Customer Preferred Date : -NA- "
+                    }
+                    val alldatFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+                    if(it.tech_alloc_date_time != null) {
+                        val datal = LocalDate.parse(it.tech_alloc_date_time, alldatFormat)
+                        val allocdate = datal.dayOfMonth.toString() + " " + datal.month.toString() + " " + datal.year.toString()
+                        binding.officeAllocDate.text = "Office Allocated Date : $allocdate"
+                    }
+                    else{
+                        binding.officeAllocDate.text = "Office Allocated Date : -NA-"
+                    }
+
                     binding.bookId.text = "Booking ID : "+it.id.toString()
                     binding.bookingDate.text = "Booking Date : $bookdate"
                     binding.labAddress.text = "Address : " + it.lab_address
@@ -116,6 +122,16 @@ class BookingDetailsFragment : Fragment() {
                     binding.bookStatus.text = "Booking Status : "+bookingzsts[it.booking_status.toInt()]
                     binding.printNeeded.text = "Printed Bill Needed : "+printzneed[it.paper_bill.toInt()]
                     binding.printGiven.text =  "Print Delivery Status : "+printzsts[it.paper_bill_status.toInt()]
+                    if(it.distance_travel.toInt() > 0 ){
+                        val distmeter = it.distance_travel.toFloat()
+                        val distkmfloat : Float = (distmeter / 1000)
+                        binding.distanceTravel.text = "Distance travelled : $distkmfloat km"
+                    }
+                    else{
+                        binding.distanceTravel.text = "Distance travelled : Not Updated"
+                    }
+
+
                     if(it.report_file == null){
                         binding.reportFile.text = "Report File : Not uploaded"
                         binding.viewReportFile.visibility = View.GONE
@@ -140,6 +156,29 @@ class BookingDetailsFragment : Fragment() {
                             }
                         }
                     }
+
+                    when(it.booking_status.toInt()){
+
+                        2 -> { //Tech Allocated
+                            binding.btnDeclineBook.visibility = View.VISIBLE
+                            binding.btnSampleColl.visibility = View.VISIBLE
+                            binding.btnBookComplt.visibility = View.GONE
+                        }
+
+                        3 -> { //Sample Collected
+                            binding.btnDeclineBook.visibility = View.GONE
+                            binding.btnSampleColl.visibility = View.GONE
+                            binding.btnBookComplt.visibility = View.VISIBLE
+                        }
+
+                        4 -> { //Completed
+                            binding.btnDeclineBook.visibility = View.GONE
+                            binding.btnSampleColl.visibility = View.GONE
+                            binding.btnBookComplt.visibility = View.GONE
+                        }
+                    }
+
+
                 }
 
             it.tests.let{
@@ -170,17 +209,15 @@ class BookingDetailsFragment : Fragment() {
         }
 
         binding.btnSampleColl.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Sample Collected")
-            builder.setMessage("Are you Sure?")
-            builder.setPositiveButton("Yes") { dialog, which ->
-                dialog.dismiss()
-                updateBookSts("3") //Sample Collected
-            }
-            builder.setNegativeButton("No") { dialog, which ->
-                dialog.dismiss()
-            }
-            builder.show()
+            val bundle = Bundle()  //stsID:3
+            bundle.putString("param1", param1)
+            val transaction = parentFragmentManager.beginTransaction()
+            val openfragmt = BookingPath()
+            openfragmt.arguments = bundle
+            transaction.replace(R.id.activity_main_content_id, openfragmt)
+            transaction.addToBackStack(null)
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            transaction.commit()
         }
 
         binding.btnBookComplt.setOnClickListener {
@@ -225,20 +262,6 @@ class BookingDetailsFragment : Fragment() {
             builder.show()
         }
 
-        binding.btnSampleNotc.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Reset to Sample not collected")
-            builder.setMessage("Are you Sure?")
-            builder.setPositiveButton("Yes") { dialog, which ->
-                dialog.dismiss()
-                updateBookSts("2") //Technician Allocated
-            }
-            builder.setNegativeButton("No") { dialog, which ->
-                dialog.dismiss()
-            }
-            builder.show()
-        }
-
         binding.btnUploadReport.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
                 type = "application/pdf"
@@ -248,21 +271,7 @@ class BookingDetailsFragment : Fragment() {
             resultLauncher.launch(intent)
         }
 
-        binding.btnUpdatePath.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString("param1", param1)
-            val transaction = parentFragmentManager.beginTransaction()
-            val openfragmt = BookingPath()
-            openfragmt.arguments = bundle
-            transaction.replace(R.id.activity_main_content_id, openfragmt)
-            transaction.addToBackStack(null)
-            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            transaction.commit()
-        }
-
     }
-
-
 
     private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
@@ -341,10 +350,8 @@ class BookingDetailsFragment : Fragment() {
 
                         if (resp?.code == 200) {
                             resp.let {
-
                                 view?.let{ snackzsucc(it,resp?.message.toString(),binding.btnUploadReport.id) }
                                 param1?.let { viewModel.bookDetails(it) }
-
                             }
 
                         } else {
@@ -365,7 +372,7 @@ class BookingDetailsFragment : Fragment() {
         val authTokn: String? = "Bearer "+ SharedPrefManager.getInstance(requireContext()).authKey
         val apiTokn: String? = SharedPrefManager.getInstance(requireContext()).apiToken
         val apiService = ServiceBuilder.buildService(ApiService::class.java)
-        val requestCall = apiService.changeBookingSts(authTokn,apiTokn,param1,stsID)
+        val requestCall = apiService.changeBookingSts(authTokn,apiTokn,param1,stsID,"")
         requestCall.enqueue(object : Callback<BookStsUpdateResp> {
             override fun onResponse(call: Call<BookStsUpdateResp>, resp: Response<BookStsUpdateResp>) {
                 resp.body().let {
@@ -373,7 +380,7 @@ class BookingDetailsFragment : Fragment() {
                     if (it != null) {
                         if(it.code == 200){
                             toastz(requireContext(),it.message.toString())
-                            if(stsID=="1") //Declined Booking
+                            if(stsID == "1") //Declined Booking
                             {
                                 val intent = Intent(requireContext(), MainActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

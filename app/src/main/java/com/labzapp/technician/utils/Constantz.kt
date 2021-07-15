@@ -13,7 +13,7 @@ const val CHANGE_BOOK_STS = "changebookingstatus"
 const val CHANGE_PRINTGIVEN_STS = "changepaperbillstatus"
 const val TEST_REPORT_UPLOAD = "uploadreport"
 const val BOOKING_DETAILS_FOR_PATH = "bookingdetforpath"
-
+const val GET_SINGLE_PACK_DET = "singlepackdetails"
 
 
 val districtz = linkedMapOf(0 to "--Select District--", 1 to "Thiruvananthapuram", 2 to "Kollam", 3 to "Pathanamthitta", 4 to "Alappuzha", 5 to "Kottayam", 6 to "Idukki",
@@ -25,3 +25,7 @@ val bookingzsts = linkedMapOf(1 to "Technician not allocated",2 to "Technician a
 val printzsts = linkedMapOf(1 to "Bill/Print NOT given to customer",2 to "Bill/Print given to customer")
 
 val printzneed = linkedMapOf(1 to "No",2 to "Yes")
+
+val testorpak = linkedMapOf(1 to "Tests Booking",2 to "Package Booking")
+
+

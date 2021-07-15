@@ -16,5 +16,8 @@ data class Bookings (
     val booking_device : String,
     val lab_name : String,
     val report_file : String,
-    val pref_date : String
+    val pref_date : String,
+    val test_or_pack : String,
+    val package_id : String?,
+
 )

@@ -22,11 +22,13 @@ import com.labzapp.technician.adapters.BookTestRateAdapter
 import com.labzapp.technician.databinding.FragmentBookingDetailsBinding
 import com.labzapp.technician.model.BookStsUpdateResp
 import com.labzapp.technician.model.PrintStsUpdateResp
+import com.labzapp.technician.model.SinglePackResponse
 import com.labzapp.technician.model.UploadReportResponse
 import com.labzapp.technician.services.network.ApiService
 import com.labzapp.technician.services.network.ServiceBuilder
 import com.labzapp.technician.storage.SharedPrefManager
 import com.labzapp.technician.utils.*
+import com.squareup.picasso.Picasso
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -54,6 +56,8 @@ class BookingDetailsFragment : Fragment() {
     private lateinit var viewModel: BookingDetailsViewModel
 
     private var touploadfile: File? = null
+    private var packOrTest:String? = null
+    private var packID:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +86,8 @@ class BookingDetailsFragment : Fragment() {
             val rupee = context?.getString(R.string.rupee) + " "
             if(it.code == 200){
                 it.booking.let{
+                    packOrTest = it.test_or_pack
+                    packID = it.package_id
                     binding.patName.text = "Name : "+it.patient_name
                     binding.patAddress.text = "Address : "+it.patient_address
                     binding.patAgeGender.text = "Age : "+it.age +"  Gender : " + genderz[it.gender.toInt()]
@@ -181,12 +187,24 @@ class BookingDetailsFragment : Fragment() {
 
                 }
 
-            it.tests.let{
-                val layoutManager = LinearLayoutManager(activity)
-                layoutManager.orientation = LinearLayoutManager.VERTICAL
-                binding.testListView.layoutManager = layoutManager
-                binding.testListView.adapter = BookTestRateAdapter(requireContext(),it)
-            }
+                if(packOrTest == "2"){ //Package Book
+                    binding.packDetCard.visibility = View.VISIBLE
+                    binding.testDetCard.visibility = View.GONE
+                    binding.testTotalTxt.text = "Package total"
+                    if(packID != null) { fetchPackageDetails(packID.toString()) }
+                }
+                else {
+                    binding.packDetCard.visibility = View.GONE
+                    binding.testDetCard.visibility = View.VISIBLE
+                    binding.testTotalTxt.text = "Tests total"
+
+                    it.tests.let {
+                        val layoutManager = LinearLayoutManager(activity)
+                        layoutManager.orientation = LinearLayoutManager.VERTICAL
+                        binding.testListView.layoutManager = layoutManager
+                        binding.testListView.adapter = BookTestRateAdapter(requireContext(), it)
+                    }
+                }
 
             }else{
                 toastz(requireContext(), it.message)
@@ -430,10 +448,50 @@ class BookingDetailsFragment : Fragment() {
         })
     }
 
+
+    private fun fetchPackageDetails(packID:String) {
+
+        val authTokn: String? = "Bearer "+ SharedPrefManager.getInstance(requireContext()).authKey
+        val apiTokn: String? = SharedPrefManager.getInstance(requireContext()).apiToken
+        val apiService = ServiceBuilder.buildService(ApiService::class.java)
+        val requestCall = apiService.getSinglePackDetail(authTokn, apiTokn,packID)
+        requestCall.enqueue(object : Callback<SinglePackResponse> {
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(call: Call<SinglePackResponse>, response: Response<SinglePackResponse>) {
+                val resp = response.body()
+                if (resp?.code == 200) {
+                    resp.packdetails.let {
+                        if (!isAdded) return
+                        val rupee = requireContext().getString(R.string.rupee)
+                        binding.packTitle.text ="Package : " +it.pack_name
+                        binding.testsDetails.text = it.test_count +" Tests : "+ it.pack_tests
+
+                        if( it.pack_image != "") {
+                            Picasso.with(context).load(it.pack_image).fit().into(binding.packImg)
+                        }
+                        else
+                        {
+                            binding.packImg.visibility = View.GONE
+                        }
+                    }
+
+                } else {
+                    view?.let{ snackze(it,resp?.message.toString(),binding.labName.id) }
+                }
+            }
+
+            override fun onFailure(call: Call<SinglePackResponse>, t: Throwable) {
+                view?.let{ snackze(it,t.message.toString(),binding.labName.id) }
+            }
+        })
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+
 
     companion object {
         @JvmStatic

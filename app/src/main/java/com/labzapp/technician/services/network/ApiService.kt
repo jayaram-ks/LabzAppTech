@@ -100,6 +100,12 @@ interface ApiService {
         @Query("booking_id") bookid: String?,
     ):Call<BookingDetailsforPathResp>
 
+    @GET(GET_SINGLE_PACK_DET)
+    fun getSinglePackDetail(
+        @Header("Authorization") authtoken: String?,
+        @Query("api_token") apitoken: String?,
+        @Query("pack_id") packid: String?,
+    ):Call<SinglePackResponse>
 
 
 }

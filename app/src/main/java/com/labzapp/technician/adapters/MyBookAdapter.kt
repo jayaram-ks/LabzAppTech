@@ -13,6 +13,7 @@ import com.labzapp.technician.databinding.BookingListItemBinding
 import com.labzapp.technician.model.Bookings
 import com.labzapp.technician.ui.bookings.BookingDetailsFragment
 import com.labzapp.technician.utils.bookingzsts
+import com.labzapp.technician.utils.testorpak
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -74,6 +75,8 @@ class MyBookAdapter( val context: Context) : RecyclerView.Adapter<MyBookAdapter.
                 binding.bookLabName.text = "Lab : "+ it.lab_name
                 binding.bookTotal.text = "Booking ID : "+it.id +"   Grand Total : "+rupee+ it.total_to_pay.toFloat().toString()
                 binding.bookStatus.text =  "Booking Status : "+ bookingzsts[it.booking_status.toInt()]
+                binding.bookType.text =  "Booking Type : "+ testorpak[it.test_or_pack.toInt()]
+
                 val datFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
                 val dat =  LocalDate.parse(it.booking_date , datFormat)
                 val bookdate = dat.dayOfMonth.toString() +" "+dat.month.toString()+" "+dat.year.toString()

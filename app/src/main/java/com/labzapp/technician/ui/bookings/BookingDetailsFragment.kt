@@ -106,11 +106,9 @@ class BookingDetailsFragment : Fragment() {
                     else{
                         binding.sampleCollDate.text = "Customer Preferred Date : -NA- "
                     }
-                    val alldatFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
                     if(it.tech_alloc_date_time != null) {
-                        val datal = LocalDate.parse(it.tech_alloc_date_time, alldatFormat)
-                        val allocdate = datal.dayOfMonth.toString() + " " + datal.month.toString() + " " + datal.year.toString()
-                        binding.officeAllocDate.text = "Office Allocated Date : $allocdate"
+
+                        binding.officeAllocDate.text = "Office Allocated Date : " + it.tech_alloc_date_time
                     }
                     else{
                         binding.officeAllocDate.text = "Office Allocated Date : -NA-"

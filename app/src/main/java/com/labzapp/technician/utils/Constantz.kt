@@ -15,6 +15,8 @@ const val TEST_REPORT_UPLOAD = "uploadreport"
 const val BOOKING_DETAILS_FOR_PATH = "bookingdetforpath"
 const val GET_SINGLE_PACK_DET = "singlepackdetails"
 
+const val MAP_WEB_API_KEY = "AIzaSyBKPPgDGeIvPqwTIe2xD1VWHxcNWoBvXAs"
+
 
 val districtz = linkedMapOf(0 to "--Select District--", 1 to "Thiruvananthapuram", 2 to "Kollam", 3 to "Pathanamthitta", 4 to "Alappuzha", 5 to "Kottayam", 6 to "Idukki",
     7 to "Ernakulam", 8 to "Thrissur", 9 to "Palakkad", 10 to "Malappuram", 11 to "Kozhikode", 12 to "Wayanad", 13 to "Kannur", 14 to "Kasaragod")
